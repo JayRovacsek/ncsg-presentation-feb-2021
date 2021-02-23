@@ -182,6 +182,22 @@
     \end{columns}
 \end{frame}
 
+\begin{frame}
+    \begin{center}
+        What might we do to a home network to not secure it?
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}
+        \item Disparate, inconsistent, or no authentication on services
+        \item Failure to segment devices based on use-case or trust of the devices
+        \item Not implement any basic IPS/IDS
+        \item Not ensure egress traffic utilising insecure protocols are managed suitably (DNSSEC, DoH or DoTLS enforcement)
+        \item No analysis of traffic patterns
+    \end{itemize}
+\end{frame}
+
 \section{Building A Home Network}
 \subsection{What Might We Run?}
 
@@ -230,10 +246,15 @@
 \end{frame}
 
 \begin{frame}
+    \begin{center}
+        Cheatsheet for building a home network:
+    \end{center}
     \begin{enumerate}
         \item Buy a domain, or use a freebie
         \item Pester your ISP for a static address (or big-brain it with some dynamic DNS)
         \item Setup some port forwards
+        \item ????
+        \item Profit!
     \end{enumerate}
 \end{frame}
 
@@ -279,6 +300,44 @@
             \end{figure}
         \end{column}
     \end{columns}
+\end{frame}
+
+\begin{frame}
+    I happen to have killed hours of my spare time implementing:
+    \begin{itemize}
+        \item Overkill network segmentation (sorry Sarah, I'll fix your chromecast connectivity one day)
+        \item Complete traffic analysis via Snort
+        \item Transparent DNS request rewrites via a DoH proxy
+        \item Consistent authentication for my exposed services (there are limits here)
+    \end{itemize}
+    I am still looking to kill hours of my time with:
+    \begin{itemize}
+        \item Analysis of traffic patterns to identify potential issues (Zeek)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    Is anyone currently utilising Zeek or have any insight into traffic pattern analysis?
+\end{frame}
+
+\begin{frame}
+    Let's talk about free options that preserve privacy and security while imposing 
+    very little technical barrier to entry:
+    \begin{itemize}
+        \item Authelia (strong authentication protections on all yo' things)
+        \item Pfsense/OPSense (or why you shouldn't accept your ISPs garbage)
+        \item Snort (proactive blocking of script kiddies)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    If we have time at the end of this talk I'd love to talk about some items that are
+    less about homelab security and more about individual security:
+    \begin{itemize}
+        \item Robust approaches to backups
+        \item Self management of secrets (getting out of the potential trap that is SaaS Password Managers)
+        \item Implementing your own VPN
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -358,29 +417,31 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}
-    \begin{center}
-        Why SWAG?
-        \vspace{5mm}\par\noindent
-    \end{center}
-\end{frame}
+\section{Authelia}
+\subsection{SWAG}
 
 \begin{frame}
     \begin{center}
-        It's a batteries included approach to us getting Authelia in the mix.
-        \vspace{5mm}\par\noindent
-        Default configs for nginx come with options for Authelia included but disabled.
+        Why SWAG?
     \end{center}
+    \begin{itemize}
+        \item It's a batteries included approach to us getting Authelia in the mix.
+        \item It contains default configs for nginx come with options for Authelia included but disabled.
+        \item Includes Let's Encrypt automation in the box 
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
     \begin{center}
         Note: \textbf{SWAG is not required, it will just make your life easier in managing a reverse proxy}
         \vspace{5mm}\par\noindent
-        If you have the know-how of setting up a reverse proxy of your choosing, you could do so.
-        
+        If you have the know-how of setting up a reverse proxy of your choosing, you could do so. 
+        \vspace{5mm}\par\noindent
+        You could use HAProxy or Traefik instead if you're inclined
     \end{center}
 \end{frame}
+
+\subsection{Deployment Model}
 
 \begin{frame}
     We're looking to deploy this model to our network:
@@ -388,6 +449,61 @@
         \centering
         \includegraphics[width=\textwidth,keepaspectratio]{../resources/archi.png}
     \end{figure}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        So we've got SWAG and Authelia setup, what does this achieve?    
+    \end{center}
+    \vspace{5mm}\par\noindent
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth,keepaspectratio]{../resources/2fa_options.png}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth,keepaspectratio]{../resources/2fa_options_alt.png}
+            \end{figure}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\subsection{Live Demo?}
+
+\begin{frame}
+    \begin{center}
+        What does the authentication flow look like? (do we chance a live demo?)
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        Any questions on Authelia?
+    \end{center}
+\end{frame}
+
+\section{Pfsense}
+\begin{frame}
+    \begin{center}
+        On to firewall options
+    \end{center}
+\end{frame}
+\subsection{Why?}
+
+\subsection{What Can We Do?}
+\begin{frame}
+    \begin{center}
+        Why might we care to use an open-source firewall appliance over an ISP provided one?
+    \end{center}
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{../resources/isp_backdoor_search.png}
+    \end{figure}
+    It's no assurance of security, but the source is open and can be reviewed by anyone
 \end{frame}
 
 \end{document}
