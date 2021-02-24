@@ -153,19 +153,31 @@
 
 \begin{frame}
     \begin{center}
+        I originally started writing this presentation deck in a manner that 
+        I reflected on and felt it was going to be telling some of the audience to 
+        suck eggs.
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        Instead at the end of these slides we'll open to discussion on the content and 
+        have a look at some of the home network protections I've setup
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        I totally won't regret this.
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
         Who is currently running their own hobby networks?
         \vspace{5mm}\par\noindent
         What are you currently running?
     \end{center}
-\end{frame}
-
-
-\begin{frame}
-    Am I going to be making any assumptions?
-    \begin{itemize}
-        \item We're not wanting to have a large number of physical devices 
-        \item We care about the security of our stuff
-    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -306,7 +318,7 @@
     I happen to have killed hours of my spare time implementing:
     \begin{itemize}
         \item Overkill network segmentation (sorry Sarah, I'll fix your chromecast connectivity one day)
-        \item Complete traffic analysis via Snort
+        \item Traffic analysis via Snort
         \item Transparent DNS request rewrites via a DoH proxy
         \item Consistent authentication for my exposed services (there are limits here)
     \end{itemize}
@@ -334,9 +346,9 @@
     If we have time at the end of this talk I'd love to talk about some items that are
     less about homelab security and more about individual security:
     \begin{itemize}
-        \item Robust approaches to backups
+        \item Approaches to backups
         \item Self management of secrets (getting out of the potential trap that is SaaS Password Managers)
-        \item Implementing your own VPN
+        \item Implementing your own VPN (should you?)
     \end{itemize}
 \end{frame}
 
@@ -366,12 +378,6 @@
             \end{figure}
         \end{column}
     \end{columns}
-\end{frame}
-
-\begin{frame}
-    \begin{center}
-        How to get around learning the intricacies of nginx?
-    \end{center}
 \end{frame}
 
 \begin{frame}
@@ -433,7 +439,7 @@
 
 \begin{frame}
     \begin{center}
-        Note: \textbf{SWAG is not required, it will just make your life easier in managing a reverse proxy}
+        Note: \textbf{SWAG is not required, it will just make your life easier in managing your reverse proxy \& Authelia}
         \vspace{5mm}\par\noindent
         If you have the know-how of setting up a reverse proxy of your choosing, you could do so. 
         \vspace{5mm}\par\noindent
@@ -472,6 +478,16 @@
     \end{columns}
 \end{frame}
 
+\begin{frame}
+    \begin{center}
+        Does this mean I could remove authentication from my exposed services?
+        \vspace{5mm}\par\noindent
+        Yup! (well, kinda)
+        \vspace{5mm}\par\noindent
+        \includegraphics[height=0.5\textheight,keepaspectratio]{../resources/look_ma_no_auth.png}
+    \end{center}
+\end{frame}
+
 \subsection{Live Demo?}
 
 \begin{frame}
@@ -482,28 +498,25 @@
 
 \begin{frame}
     \begin{center}
-        Any questions on Authelia?
+        Cool, that's pretty much Authelia
+        \vspace{5mm}\par\noindent
+        Any questions?
     \end{center}
 \end{frame}
 
-\section{Pfsense}
 \begin{frame}
     \begin{center}
-        On to firewall options
+        Let's discuss home networks some more:
     \end{center}
+    \begin{itemize}
+        \item Open Source Firewalls
+        \item IPS/IDS
+        \item Backups
+        \item Self management of secrets
+        \item Implementing your own VPN
+        \item Something else?
+    \end{itemize}
 \end{frame}
-\subsection{Why?}
 
-\subsection{What Can We Do?}
-\begin{frame}
-    \begin{center}
-        Why might we care to use an open-source firewall appliance over an ISP provided one?
-    \end{center}
-    \begin{figure}
-        \centering
-        \includegraphics[width=\textwidth,keepaspectratio]{../resources/isp_backdoor_search.png}
-    \end{figure}
-    It's no assurance of security, but the source is open and can be reviewed by anyone
-\end{frame}
 
 \end{document}
